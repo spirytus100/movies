@@ -19,11 +19,6 @@ class MoviesStats():
         self.genres = ["horror", "science-fiction", "wojenny", "sensacyjny", "thriller", "akcji", "komedia", "katastroficzny", "dramat",
 		                "przygodowy", "fantasy", "psychologiczny", "historyczny", "inny"]
 
-    def weekday(self, watch_date):
-        """Zwraca dzień tygodnia z daty obejrzenia"""
-        movie_weekday = datetime.date.weekday(watch_date)
-        return movie_weekday
-
     def formatted_date(self, watch_date):
         """"Formatuje datę obejrzenia do formatu 'obliczalnego'"""
         formatted_date = datetime.datetime.strptime(watch_date, "%d-%m-%Y")
@@ -38,12 +33,6 @@ class MoviesStats():
         minutes = minutes * 60
         seconds = hours + minutes
         return seconds
-
-    def time_past_from_movie(self, watch_date):
-        """Oblicza ilość dni od ostatniego obejrzenia filmu."""
-        format_watch_date = datetime.datetime.strptime(watch_date, "%d%m%Y")
-        time_past_movie = datetime.datetime.today() - format_watch_date
-        return time_past_movie
 
     def assign_points(self, list_sorted_byvalue):
         i = len(list_sorted_byvalue) + 1
