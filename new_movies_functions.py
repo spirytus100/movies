@@ -88,10 +88,11 @@ class DatabaseActions():
 			times_watched = row[1]
 			
 		times_watched += 1
-		sql_update_statement = "UPDATE movies SET times_watched = ? WHERE id = ?"
-		db_conn_obj.execute(sql_update_statement, (times_watched, idnum))
+		today = datetime.today().strftime("%d-%m-%Y")
+		sql_update_statement = "UPDATE movies SET times_watched = ?, watch_date = ? WHERE id = ?"
+		db_conn_obj.execute(sql_update_statement, (times_watched, today, idnum))
 		db_conn_obj.commit()
-		print("Liczba obejrzeń filmu", title, "została zwiększona o 1.")
+		print("Liczba obejrzeń filmu", title, "została zwiększona o 1. Data obejrzenia została zmieniona na datę dzisiejszą.")
 
 	def update_database_record(self, feature, new_value, idnum):
 		"""Modyfikuje rekord w bazie danych"""
