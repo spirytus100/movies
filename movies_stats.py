@@ -142,6 +142,16 @@ class MoviesStats():
 
         sorted_movies = sorted(movies_dict.items(), reverse=True, key=lambda x: x[1])
 
+        connection = self.connection
+        cursor = connection.execute("SELECT watch_date, times_watched FROM movies WHERE times_watched = 1")
+        last_date = sorted(list(cursor), reverse=True, key=lambda x: datetime.datetime.strptime(x[0], "%d-%m-%Y"))[0][0]
+        datediff = datetime.datetime.now() - datetime.datetime.strptime(last_date, "%d-%m-%Y")
+        if datediff.days >= 20:
+            cursor = connection.execute("SELECT title FROM propositions")
+
+            for row in cursor:
+                print(row[0])
+
         i = 0
         while i < len(sorted_movies):
             print(sorted_movies[i][0])

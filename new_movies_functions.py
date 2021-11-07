@@ -290,7 +290,7 @@ def get_user_input(db_conn_obj, deleted_ids, create_film_instance=True):
 	overall = pyinput.inputNum("Ocena ogólna: ", min=1, max=10)
 	print(idnum)
 	new_movie = Film(idnum, title, genre, length, year, watch_date, originality, depth, social_engineering,
-					 actors, pictures, fx, atmosphere, overall, times_watched=0)
+					 actors, pictures, fx, atmosphere, overall, times_watched=1)
 	return new_movie
 
 
